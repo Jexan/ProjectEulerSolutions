@@ -1,3 +1,7 @@
+from collections import defaultdict
+
+factors = defaultdict(list)
+
 # Prime factorization by powers
 def get_factors_count(n):
     factors  = defaultdict(dict)
@@ -25,10 +29,12 @@ def get_factors_count(n):
 
 # Gets a list of factors, including repeated
 def get_factors(n):
+    import sympy
+
     if factors[n]:
         return factors[n]
 
-    for i in sieve:
+    for i in sympy.sieve:
         if n == i:
             factors[n] += [i] 
         elif not n % i:
