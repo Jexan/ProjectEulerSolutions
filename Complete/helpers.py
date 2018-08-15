@@ -1,4 +1,5 @@
 from collections import defaultdict
+from itertools import combinations
 
 factors = defaultdict(list)
 primes = [2, 3]
@@ -16,6 +17,20 @@ def primes_until(n):
 
         for j in range(i**2, n, i):
             sieve[j] = True 
+
+def is_palindrome(n):
+    word_n = str(n)
+
+    return word_n == word_n[::-1]
+
+def find_palindromes(lower_lim, upper_lim):
+    palind_range = (i for i in range(lower_lim, upper_lim) if i % 10) # numbers that end in 0 are never palindromes
+
+    for n1, n2 in combinations(palind_range, 2):
+        result = n1*n2
+
+        if is_palindrome(result):
+            yield result
 
 # Prime factorization by powers
 def get_factors_count(n):
