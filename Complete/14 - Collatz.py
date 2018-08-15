@@ -35,4 +35,6 @@ values = [collatz[i] for i in keys]
 max_chain = max(values)
 max_initial_val = values.index(max_chain) + 1
 
-print(max_chain, max_initial_val)
+result = max_initial_val
+if __name__ == '__main__':
+	print(result)

@@ -39,4 +39,6 @@ for i in reversed(bound_sieve):
 		max_prime = i
 		break
 
-print(max_prime)
+result = max_prime
+if __name__ == '__main__':
+    print(result)

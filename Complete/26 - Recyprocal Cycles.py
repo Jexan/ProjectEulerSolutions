@@ -20,4 +20,6 @@ for i in range(1, 1000):
             possible_divisors += [remainder]            
             remainder *= 10
 
-print(max(len_cycle, key=lambda x: len_cycle[x]))
+result = max(len_cycle, key=lambda x: len_cycle[x])
+if __name__ == '__main__':
+    print(result)

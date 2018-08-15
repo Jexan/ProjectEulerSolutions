@@ -14,6 +14,8 @@ assert(content.index('COLIN') == 937)
 for index, name in enumerate(content):
 	acc += (index+1) * get_alpha_score(name)
 
-print(acc)
+result = acc
+if __name__ == '__main__':
+    print(result)
 
 f.close()

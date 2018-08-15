@@ -20,4 +20,7 @@ def redux(n, m):
 		redux(n-i, i)
 
 redux(200, 200)
-print(poss)
+
+result = poss
+if __name__ == '__main__':
+    print(result)

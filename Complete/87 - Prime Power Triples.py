@@ -24,5 +24,7 @@ for i in squared_primes:
 
 print(list(genererated)[:10])
 l = list(filter(lambda x: x < below, genererated))
-print(len(l))
 
+result = len(l)
+if __name__ == '__main__':
+    print(result)

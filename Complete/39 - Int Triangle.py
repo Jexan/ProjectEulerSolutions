@@ -26,3 +26,7 @@ for i in range(1, count):
 		qtt_sol = c 
 
 print(max_sol, qtt_sol)
+
+result = None
+if __name__ == '__main__':
+    print(result)

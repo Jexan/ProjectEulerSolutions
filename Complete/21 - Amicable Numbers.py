@@ -26,4 +26,6 @@ for i in range(2, limit):
 	if other_divisor_sum == i and divisor_sum != i:
 		amicable_numbers.extend([divisor_sum, other_divisor_sum])
 
-print(sum(set(amicable_numbers)), len(amicable_numbers), set(amicable_numbers))
+result = sum(set(amicable_numbers)), len(amicable_numbers), set(amicable_numbers)
+if __name__ == '__main__':
+    print(result)

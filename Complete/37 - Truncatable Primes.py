@@ -24,5 +24,6 @@ for i in filter(lambda x: x > 10, sieve):
         if truncatable_count == 11:
             break
 
-print(truncatables)
-print(sum(truncatables))
+result = sum(truncatables)
+if __name__ == '__main__':
+    print(result)

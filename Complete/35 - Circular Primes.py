@@ -29,4 +29,6 @@ max_prime = 1000000
 sieve = create_sieve(max_prime)
 circulars = [i for i in filter(circulars_are_prime, sieve)]
 
-print(len(circulars), circulars)
+result = len(circulars), circulars
+if __name__ == '__main__':
+    print(result)

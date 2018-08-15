@@ -31,4 +31,7 @@ one_ten = ['one',
 tens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety', 'hundred']
 
 letter_repr = [wordize(i) for i in range(1, 1001)]
-print(sum(map(len, letter_repr)))
+
+result = sum(map(len, letter_repr))
+if __name__ == '__main__':
+    print(result)

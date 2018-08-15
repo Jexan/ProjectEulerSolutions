@@ -19,4 +19,6 @@ for i in sums:
 	if is_criterion(adition(i, (1,1))):
 		total += 1
 
-print(total)
+result = total
+if __name__ == '__main__':
+    print(result)

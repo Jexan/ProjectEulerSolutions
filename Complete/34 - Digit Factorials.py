@@ -13,4 +13,6 @@ for i in range(2500000):
 	if digit_factorials_sum(i) == i:
 		digits.append(i)
 
-print(digits, sum(digits))
+result = sum(digits)
+if __name__ == '__main__':
+    print(result)

@@ -23,4 +23,6 @@ while True:
 
 	n += 10000
 
-print(common)
+result = common
+if __name__ == '__main__':
+    print(result)

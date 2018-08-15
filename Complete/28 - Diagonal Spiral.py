@@ -12,5 +12,7 @@ def generate_numbers(limit):
 			steps += 2
 
 		current += steps
-		
-print(sum([i for i in generate_numbers(square_side)]))
+	
+result = sum([i for i in generate_numbers(square_side)])
+if __name__ == '__main__':
+    print(result)

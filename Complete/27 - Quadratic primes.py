@@ -21,4 +21,6 @@ for n in count(1):
 
     current_runners, next_runners = next_runners, []
 
-print(next_runners[0][0]*next_runners[0][1])
+result = next_runners[0][0]*next_runners[0][1]
+if __name__ == '__main__':
+    print(result)

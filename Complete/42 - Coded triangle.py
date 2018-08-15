@@ -20,6 +20,9 @@ for i in content:
 	if get_alpha_score(i) in tri_ns:
 		triangular_words += 1
 
-print(triangular_words)
+
+result = triangular_words
+if __name__ == '__main__':
+    print(result)
 
 f.close()

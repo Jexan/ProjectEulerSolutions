@@ -15,4 +15,6 @@ for x in range(1, 28124//2 + 1):
 abundants = filter(is_abundant, range(1, 28124))
 summable  = set(sum(i) for i in combinations_with_replacement(abundants, 2))
 
-print(sum(set(range(1, 28124)).difference(summable)))
+result = sum(set(range(1, 28124)).difference(summable))
+if __name__ == '__main__':
+    print(result)

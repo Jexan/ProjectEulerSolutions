@@ -25,4 +25,6 @@ for i in terms[::-1]:
 
 n_term = adition((2,1), simplification((1,1), accumulated))
 
-print(sum([int(i) for i in str(n_term[0])]))
+result = sum([int(i) for i in str(n_term[0])])
+if __name__ == '__main__':
+    print(result)
