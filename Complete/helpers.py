@@ -1,8 +1,8 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
 from itertools import combinations
 
 factors = defaultdict(list)
-primes = [2, 3]
+primes = []
 
 def primes_until(n):
     sieve = {}
@@ -32,11 +32,41 @@ def find_palindromes(lower_lim, upper_lim):
         if is_palindrome(result):
             yield result
 
+def prime_factorization(n):
+    for prime in primes_until(int(n**.5) + 1):
+        if not n % prime:
+            div = n // prime
+
+            return [prime] + prime_factorization(div)
+
+    return [n]
+
+def get_factors_number(n):
+    return Counter(prime_factorization(n))
+
+def mcm(*xs):
+    factors = [get_factors_number(x) for x in xs]
+    factors_with_max_exponent = {}
+
+    for counter in factors:
+        for prime, times in counter.items():
+            saved_factor = factors_with_max_exponent.get(prime)
+
+            if saved_factor is None or saved_factor < times:
+                factors_with_max_exponent[prime] = times
+
+    result = 1
+    for prime, times in factors_with_max_exponent.items():
+        result *= prime**times
+
+    return result
+
+
 # Prime factorization by powers
 def get_factors_count(n):
     factors  = defaultdict(dict)
     
-    for i in primes_until(n):
+    for i in primes_until(int(n**.5)):
         if n == i:
             factors[n][i] = 1 
         elif not n % i:
