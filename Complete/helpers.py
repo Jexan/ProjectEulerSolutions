@@ -1,12 +1,27 @@
 from collections import defaultdict
 
 factors = defaultdict(list)
+primes = [2, 3]
+
+def primes_until(n):
+    sieve = {}
+    
+    yield 2
+    for i in range(3, n, 2):
+        if sieve.get(i):
+            continue
+
+        yield i
+        primes.append(i)
+
+        for j in range(i**2, n, i):
+            sieve[j] = True 
 
 # Prime factorization by powers
 def get_factors_count(n):
     factors  = defaultdict(dict)
     
-    for i in sieve:
+    for i in primes_until(n):
         if n == i:
             factors[n][i] = 1 
         elif not n % i:
@@ -27,27 +42,12 @@ def get_factors_count(n):
 
         return factors[n]
 
-# Gets a list of factors, including repeated
+# Gets a list of unique prime factors
 def get_factors(n):
-    import sympy
-
-    if factors[n]:
-        return factors[n]
-
-    for i in sympy.sieve:
-        if n == i:
-            factors[n] += [i] 
-        elif not n % i:
-            div = n//i
-
-            if not factors[div]:
-                get_factors(div)
-
-            factors[n] += factors[div].copy() + [i]
-        else:
-            continue
-
-        return factors[n]
+    sqrt_n = int(n**.5)
+    for i in primes_until(sqrt_n):
+        if not n % i:
+            yield i
 
 # Get the unique divisors of a number. Needs a defaultdict
 def produce_divs(n):
