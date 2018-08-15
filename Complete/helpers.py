@@ -50,3 +50,13 @@ def produce_divs(n):
     n_factors += [1]*org_len
 
     return set(reduce(mul, i) for i in combinations(n_factors, org_len)).difference((n,))
+
+# Generate fibonnacci numbers
+def generate_fibonnacci():
+    prev, current = 0, 1
+
+    while True:
+        yield current
+
+        prev, current = current, prev + current
+        
