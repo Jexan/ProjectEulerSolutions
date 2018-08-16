@@ -17,8 +17,8 @@ def generate_primes():
     yield 2
     
     _from = 2
-    limit = 100002
-    step = 100000
+    limit = 1000002
+    step = 1000000
 
     def min_gen():
         for i in range(_from + 1, limit, 2):
