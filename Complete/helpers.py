@@ -1,8 +1,56 @@
 from collections import defaultdict, Counter
-from itertools import combinations
+from itertools import combinations, islice
 
 factors = defaultdict(list)
-primes = []
+primes = [2]
+
+sieve_generators = {}
+sieve = {}
+
+def do_times(n, iterable):
+    counter = 0
+    while counter < n:
+        counter += 1
+        next(iterable, None)
+
+def generate_primes():
+    yield 2
+    
+    _from = 2
+    limit = 100002
+    step = 100000
+
+    def min_gen():
+        for i in range(_from + 1, limit, 2):
+            if sieve.get(i):
+                continue
+
+            yield i
+            primes.append(i)
+
+            sieve_generator = prepare_for_sieve(i)
+            times_to_run = limit // i
+
+            do_times(times_to_run, sieve_generator)
+            sieve_generators[i] = sieve_generator
+
+    while True:
+        for i in min_gen():
+            yield i
+
+        _from = limit
+        limit += step 
+
+        for prime, sieving_fun in sieve_generators.items():
+            do_times(limit//prime, sieving_fun)
+
+def prepare_for_sieve(n):
+    current = n**2
+
+    while True:
+        sieve[current] = True
+        yield
+        current += n 
 
 def primes_until(n):
     sieve = {}
