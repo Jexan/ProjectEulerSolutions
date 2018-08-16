@@ -109,6 +109,16 @@ def mcm(*xs):
 
     return result
 
+def consecutive_iter(iterator, size=2):
+    iterator = tuple(iterator)
+    max_index = len(iterator) - 1 
+    
+    current_index = 0
+
+    while current_index + size <= max_index: 
+        yield iterator[current_index:current_index + size]
+        current_index += 1
+    
 
 # Prime factorization by powers
 def get_factors_count(n):
