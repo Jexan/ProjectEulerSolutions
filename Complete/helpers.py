@@ -1,5 +1,5 @@
 from collections import defaultdict, Counter
-from itertools import combinations, islice
+from itertools import combinations, islice, takewhile
 
 factors = defaultdict(list)
 primes = [2]
@@ -171,3 +171,6 @@ def generate_fibonnacci():
 
         prev, current = current, prev + current
         
+
+def take(n, iterable):
+    return islice(iterable, n)
