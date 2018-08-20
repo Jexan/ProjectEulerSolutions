@@ -7,6 +7,8 @@ primes = [2]
 sieve_generators = {}
 sieve = {}
 
+digits = frozenset('123456789')
+
 def do_times(n, iterable):
     counter = 0
     while counter < n:
