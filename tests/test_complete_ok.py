@@ -89,6 +89,10 @@ def assure_031(self):
     from Complete.E031 import result
     self.assertEqual(result, 73682)
 
+def assure_032(self):
+    from Complete.E032 import result
+    self.assertEqual(result, 45228)
+
 def assure_034(self):
     from Complete.E034 import result
     self.assertEqual(result, 40730)
