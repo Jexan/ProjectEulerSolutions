@@ -1,6 +1,6 @@
 import unittest
 
-TESTING_NOW = 31
+TESTING_NOW = 42
 
 class TestCompleteChallengesYieldCorrectResults(unittest.TestCase):
     def test_assure_given_ok(self):
@@ -96,6 +96,10 @@ def assure_034(self):
 def assure_039(self):
     from Complete.E039 import result
     self.assertEqual(result, 840)
+
+def assure_042(self):
+    from Complete.E042 import result
+    self.assertEqual(result, 162)
 
 def assure_043(self):
     from Complete.E043 import result
