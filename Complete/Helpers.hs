@@ -1,9 +1,12 @@
 module Helpers (
     getPrimesUntil,
-    getProperFactors
+    getProperFactors,
+    factorial,
+    sumOfDigits
 ) where
 
 import qualified Data.IntMap as Map
+import Data.Char (digitToInt)
 
 type Sieve = Map.IntMap Bool
 
@@ -38,3 +41,9 @@ getProperFactors n = 1 : foldl concatDivisors [] [2 ..  floor $ sqrt $ fromInteg
         | mod n m == 0 = (if m == division then id else (:) division) $ m : xs
         | otherwise = xs
         where division = div n m
+
+factorial :: Integer -> Integer
+factorial n = fromIntegral $ product [1..n]
+
+sumOfDigits :: Integer -> Int
+sumOfDigits = sum . map digitToInt . show
