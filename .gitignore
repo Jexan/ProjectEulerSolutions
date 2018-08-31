@@ -1,2 +1,7 @@
 *.txt
 __pycache__
+
+*.hi
+*.o
+*.exe
+*sublime*

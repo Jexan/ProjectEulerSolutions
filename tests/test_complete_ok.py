@@ -1,6 +1,12 @@
 import unittest
+import subprocess
+import os
 
-TESTING_NOW = 46
+TESTING_NOW = 21
+
+def get_haskell_output(n):
+    program = os.path.join(os.getcwd(), 'Complete', 'E{}'.format(n))
+    return int(subprocess.check_output(program))
 
 class TestCompleteChallengesYieldCorrectResults(unittest.TestCase):
     def test_assure_given_ok(self):
@@ -72,6 +78,10 @@ def assure_017(self):
 def assure_018(self):
     from Complete.E018 import result
     self.assertEqual(result, 1074)
+
+def assure_021(self):
+    result = get_haskell_output('021')
+    self.assertEqual(result, 31626)
 
 def assure_022(self):
     from Complete.E022 import result
