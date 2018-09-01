@@ -2,13 +2,20 @@ module Helpers (
     getPrimesUntil,
     getProperFactors,
     factorial,
-    sumOfDigits
+    sumOfDigits,
+    hasCommon
 ) where
 
 import qualified Data.IntMap as Map
 import Data.Char (digitToInt)
 
 type Sieve = Map.IntMap Bool
+
+hasCommon :: Eq a => [a] -> [a] -> Bool
+hasCommon [] b = False
+hasCommon (a:as) b
+    | elem a b = True
+    | otherwise = hasCommon as b 
 
 getPrimesUntil :: Int -> [Int]
 getPrimesUntil n = 2 : (filter (\k -> Map.lookup k sieve == Just True) $ Map.keys sieve)
