@@ -63,8 +63,7 @@ def primes_until(n):
             continue
 
         yield i
-        primes.append(i)
-
+        
         for j in range(i**2, n, i):
             sieve[j] = True 
 
