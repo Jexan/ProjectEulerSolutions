@@ -1,11 +1,10 @@
 from collections import defaultdict, Counter
-from itertools import combinations, islice, takewhile
+from itertools import combinations, islice, takewhile, chain
 
 factors = defaultdict(list)
 primes = [2]
 
 sieve_generators = {}
-sieve = {}
 
 digits = frozenset('123456789')
 
@@ -16,6 +15,7 @@ def do_times(n, iterable):
         next(iterable, None)
 
 def generate_primes():
+    sieve = {}
     yield 2
     
     _from = 2
@@ -30,7 +30,7 @@ def generate_primes():
             yield i
             primes.append(i)
 
-            sieve_generator = prepare_for_sieve(i)
+            sieve_generator = prepare_for_sieve(i, sieve)
             times_to_run = limit // i
 
             do_times(times_to_run, sieve_generator)
@@ -46,7 +46,7 @@ def generate_primes():
         for prime, sieving_fun in sieve_generators.items():
             do_times(limit//prime, sieving_fun)
 
-def prepare_for_sieve(n):
+def prepare_for_sieve(n, sieve):
     current = n**2
 
     while True:
@@ -63,9 +63,31 @@ def primes_until(n):
             continue
 
         yield i
-        
+
         for j in range(i**2, n, i):
             sieve[j] = True 
+
+class SieveClass:
+    primes = set()
+    biggest_primes = 2
+
+    def __init__(self):
+        self.prime_gen = self.get_prime_gen()
+
+    def __contains__(self, item):
+        return item in self.primes
+
+    def __iter__(self):
+        return chain(primes, self.prime_gen)
+
+    def get_prime_gen(self):
+        for prime in generate_primes():
+            self.biggest_primes = prime
+            self.primes.add(prime)
+
+            yield prime
+
+sieve = SieveClass()
 
 def is_palindrome(n):
     word_n = str(n)
