@@ -14,6 +14,10 @@ def do_times(n, iterable):
         counter += 1
         next(iterable, None)
 
+def find(f, iterable):
+    for i in iterable:
+        if f(i): return i
+
 def generate_primes():
     sieve = {}
     yield 2
@@ -183,15 +187,14 @@ def produce_divs(n):
 
     return set(reduce(mul, i) for i in combinations(n_factors, org_len)).difference((n,))
 
-# Generate fibonnacci numbers
-def generate_fibonnacci():
+# Generate fibonacci numbers
+def generate_fibonacci():
     prev, current = 0, 1
 
     while True:
         yield current
 
         prev, current = current, prev + current
-        
 
 def take(n, iterable):
     return islice(iterable, n)

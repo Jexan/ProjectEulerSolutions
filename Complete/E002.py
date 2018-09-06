@@ -1,12 +1,12 @@
-# Sum even fibonnaci under 4 million
+# Sum even fibonacci under 4 million
 
-from .helpers import generate_fibonnacci
+from .helpers import generate_fibonacci
 
 LIMIT = 4000000
 
 def sum_even_fibb_until(limit):
     def mini_gen():
-        for n in generate_fibonnacci():
+        for n in generate_fibonacci():
             if n >= limit:
                 return
 
