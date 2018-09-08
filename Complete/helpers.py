@@ -74,6 +74,7 @@ def primes_until(n):
 class SieveClass:
     primes = set()
     biggest_primes = 2
+    ordered = list()
 
     def __init__(self):
         self.prime_gen = self.get_prime_gen()
@@ -84,10 +85,14 @@ class SieveClass:
     def __iter__(self):
         return chain(primes, self.prime_gen)
 
+    def ordered_until(self, n):
+        return takewhile(lambda x: x < n, self.ordered)
+
     def get_prime_gen(self):
         for prime in generate_primes():
             self.biggest_primes = prime
             self.primes.add(prime)
+            self.ordered.append(prime)
 
             yield prime
 
@@ -216,3 +221,28 @@ def generate_fibonacci():
 
 def take(n, iterable):
     return islice(iterable, n)
+
+class GrowingSet(set):
+    def __init__(self, iterator):
+        self.iterator = iterator
+        
+        last = next(iterator, None)
+        if last is None:
+            raise ValueError('Empty iterator or not growing iterator gotten')
+        
+        self.last = last
+        self.ordered = [last]
+        self.add(last)
+
+    def __contains__(self, value):
+        if value < self.last:
+            self._produce_until(value)
+
+        return super().__contains__(value)
+
+    def _produce_until(self, value):
+        for i in self.iterator:
+            self.last = i
+            self.add(i)
+            self.ordered(i)
+            if value <= i: return
