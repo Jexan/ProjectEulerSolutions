@@ -136,6 +136,24 @@ def mcm(*xs):
 
     return result
 
+def gcd(*xs):
+    factors = [get_factors_number(x) for x in xs]
+    factors_with_max_exponent = {}
+
+    for counter in factors:
+        for prime, times in counter.items():
+            saved_factor = factors_with_max_exponent.get(prime)
+            is_common = all(counter.get(prime) for counter in factors)
+
+            if (saved_factor is None or saved_factor > times) and is_common:
+                factors_with_max_exponent[prime] = times
+
+    result = 1
+    for prime, times in factors_with_max_exponent.items():
+        result *= prime**times
+
+    return result
+
 def consecutive_iter(iterator, size=2):
     iterator = tuple(iterator)
     max_index = len(iterator) - 1 
