@@ -1,3 +1,10 @@
+# Square root expansion with numerators bigger than denominator.
+# OPTIMAL (<0.1s)
+#
+# APPROACH:
+#     Basically brute force. Use a 2-tuple to represent an
+#     optimized rational
+
 def adition(s, t):
 	return (t[0]*s[1] + t[1]*s[0], s[1]*t[1])
 
@@ -20,5 +27,3 @@ for i in sums:
 		total += 1
 
 result = total
-if __name__ == '__main__':
-    print(result)
