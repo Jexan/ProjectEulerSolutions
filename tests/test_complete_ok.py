@@ -2,7 +2,7 @@ import unittest
 import subprocess
 import os
 
-TESTING_NOW = 75
+TESTING_NOW = 53
 
 def get_haskell_output(n):
     program = os.path.join(os.getcwd(), 'Complete', 'E{}'.format(n))
@@ -208,6 +208,10 @@ def assure_048(self):
 def assure_049(self):
     from Complete.E049 import result
     self.assertEqual(result, 296962999629)
+
+def assure_053(self):
+    from Complete.E053 import result
+    self.assertEqual(result, 4075)
 
 def assure_055(self):
     from Complete.E055 import result

@@ -1,5 +1,6 @@
 from collections import defaultdict, Counter
 from itertools import combinations, islice, takewhile, chain
+from math import factorial
 
 factors = defaultdict(list)
 primes = [2]
@@ -231,3 +232,6 @@ class GrowingSet(set):
             self.add(i)
             self.ordered(i)
             if value <= i: return
+
+def nCk(n, k):
+    return factorial(n)//(factorial(k)*factorial(n-k))
