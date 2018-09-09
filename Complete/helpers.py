@@ -73,13 +73,16 @@ def primes_until(n):
 
 class SieveClass:
     primes = set()
-    biggest_primes = 2
+    biggest_prime = 2
     ordered = list()
 
     def __init__(self):
         self.prime_gen = self.get_prime_gen()
 
     def __contains__(self, item):
+        while item > self.biggest_prime:
+            next(self.prime_gen)
+
         return item in self.primes
 
     def __iter__(self):
@@ -90,7 +93,7 @@ class SieveClass:
 
     def get_prime_gen(self):
         for prime in generate_primes():
-            self.biggest_primes = prime
+            self.biggest_prime = prime
             self.primes.add(prime)
             self.ordered.append(prime)
 
@@ -133,24 +136,6 @@ def mcm(*xs):
             saved_factor = factors_with_max_exponent.get(prime)
 
             if saved_factor is None or saved_factor < times:
-                factors_with_max_exponent[prime] = times
-
-    result = 1
-    for prime, times in factors_with_max_exponent.items():
-        result *= prime**times
-
-    return result
-
-def gcd(*xs):
-    factors = [get_factors_number(x) for x in xs]
-    factors_with_max_exponent = {}
-
-    for counter in factors:
-        for prime, times in counter.items():
-            saved_factor = factors_with_max_exponent.get(prime)
-            is_common = all(counter.get(prime) for counter in factors)
-
-            if (saved_factor is None or saved_factor > times) and is_common:
                 factors_with_max_exponent[prime] = times
 
     result = 1

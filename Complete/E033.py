@@ -7,9 +7,9 @@
 #   - Check if the multiples' denominator and numerator has a common digit (that is not 0).
 #   - If the multiples are equal to the single fractions that generated them, we got a criteria-fitting fraction.
 
-from math import ceil
+from math import ceil, gcd
 from functools import reduce
-from .helpers import gcd, take
+from .helpers import take
 
 def simplify_rational(n):
     num, den = n
