@@ -1,31 +1,27 @@
 # Triangles with perimeter below 1000 with more solutions
-# Very slow (4 minutes)
+# OPTIMAL (<0.05s)
+# 
+# APPROACH:
+# 	Generate Pythagorean Triplets with perimeter under 1000.
+# 	See 075.py's explanation to check a better theorical approach.
+# 	
+# NOTES:
+# 	Using triplets reduced the runtime from 4 minutes to ~0.05 seconds (with unittest sometimes 0.00s 
+# 	is reported as the runtime)
+# 	The previous approach used sum(1..1000) iterations, with usage of floor and sqrts.
+# 	The triplets approach instead used less than sum(1..10) iterations.
 
-LIMIT = 1000
+from .helpers import get_triangle_perimeters
+LIMIT = 1001
 
 DUMMY_PERIMETER = 120
 DUMMY_RESULT = 3
 
-def find_possible(p):
-	solutions = 0
+def find_max_possible():
+	val = max(counter)
+	return counter.index(val)
 
-	for i in range(1, p):
-		i2 = i**2
+counter = get_triangle_perimeters(LIMIT)
 
-		for j in range(i, p-i):
-			j2 = j**2
-
-			hyp = p - i - j
-
-			if j2 + i2 == hyp**2:
-				solutions += 1
-
-	return solutions
-
-def find_max_possible(limit):
-	vals_gen = ((i, find_possible(i)) for i in range(1, limit))
-
-	return max(vals_gen, key=lambda x: x[1])[0]
-
-assert find_possible(DUMMY_PERIMETER) == DUMMY_RESULT
-result = find_max_possible(LIMIT)
+assert counter[DUMMY_PERIMETER] == DUMMY_RESULT
+result = find_max_possible()

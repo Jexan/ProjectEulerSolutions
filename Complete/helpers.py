@@ -1,6 +1,6 @@
 from collections import defaultdict, Counter
 from itertools import combinations, islice, takewhile, chain
-from math import factorial
+from math import factorial, gcd, floor
 
 factors = defaultdict(list)
 primes = [2]
@@ -235,3 +235,25 @@ class GrowingSet(set):
 
 def nCk(n, k):
     return factorial(n)//(factorial(k)*factorial(n-k))
+
+# Used by 39 and 75
+def get_triangle_perimeters(limit):
+    counter = [0] * limit
+    
+    for m in range(1, floor(limit**.5)):
+        sqr_m = m**2
+        for n in range(1, m):
+            if gcd(m, n) != 1 or (m % 2 and n % 2):
+                continue
+
+            perimeter = 2*(sqr_m + m*n) 
+
+            if perimeter > limit:
+                break
+            else:
+                times = limit // perimeter 
+
+                for i in range(1, times+1):
+                    counter[perimeter*i] += 1 
+
+    return counter 
