@@ -90,6 +90,9 @@ class SieveClass:
         return chain(primes, self.prime_gen)
 
     def ordered_until(self, n):
+        if n > self.biggest_prime:
+            self._produce_until(n)
+
         return takewhile(lambda x: x < n, self.ordered)
 
     def get_prime_gen(self):
@@ -99,6 +102,10 @@ class SieveClass:
             self.ordered.append(prime)
 
             yield prime
+
+    def _produce_until(self, value):
+        for i in self.prime_gen:
+            if value <= i: return
 
 sieve = SieveClass()
 
@@ -235,6 +242,17 @@ class GrowingSet(set):
 
 def nCk(n, k):
     return factorial(n)//(factorial(k)*factorial(n-k))
+
+def produce_totients_list(limit):
+    totients = list(range(0, limit))
+    totients[1] = 0
+
+    for prime in primes_until(limit):
+        result = 1 - 1/prime
+        for i in range(prime, limit, prime):
+            totients[i] *= result
+
+    return totients
 
 # Used by 39 and 75
 def get_triangle_perimeters(limit):
