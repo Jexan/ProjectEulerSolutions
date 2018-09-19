@@ -60,11 +60,11 @@ def prepare_for_sieve(n, sieve):
         current += n 
 
 def primes_until(n):
-    sieve = {}
+    sieve = [0] * n  
     
     yield 2
     for i in range(3, n, 2):
-        if sieve.get(i):
+        if sieve[i]:
             continue
 
         yield i
