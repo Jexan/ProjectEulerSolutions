@@ -5,3 +5,6 @@ __pycache__
 *.o
 *.exe
 *sublime*
+
+Attempts/*
+possibilities.txt
